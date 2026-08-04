@@ -22,7 +22,7 @@ class Settings(BaseSettings):
     supabase_anon_key: str
 
     # CORS
-    cors_origins: str = "http://localhost:3000,http://localhost:3001,http://localhost:3002"
+    cors_origins: str = "http://localhost:3000,http://localhost:3001,http://localhost:3002,https://portfolio1-portfolio-admin.vercel.app,https://portfolio1-portfolio.vercel.app"
 
     @property
     def cors_origin_list(self) -> list[str]:
