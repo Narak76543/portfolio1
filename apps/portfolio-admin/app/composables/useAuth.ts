@@ -64,7 +64,7 @@ export function useAuth() {
   /** Verify session token with backend GET /api/v1/auth/me */
   async function checkAuth(): Promise<boolean> {
     initAuth()
-    const token = authState.value.accessToken || tokenCookie.value
+    const token = authState.value.accessToken || tokenCookie.value || (import.meta.client ? localStorage.getItem('admin_token') : null)
     if (!token) return false
 
     try {
@@ -76,9 +76,12 @@ export function useAuth() {
       emailCookie.value = user.email
       userIdCookie.value = user.id
       return true
-    } catch {
-      await logout()
-      return false
+    } catch (err: any) {
+      if (err.status === 401 || err.statusCode === 401) {
+        await logout()
+        return false
+      }
+      return true
     }
   }
 
