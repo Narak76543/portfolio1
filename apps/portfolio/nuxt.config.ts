@@ -37,9 +37,9 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL || 'http://localhost:8000',
-      supabaseUrl: process.env.NUXT_PUBLIC_SUPABASE_URL || '',
-      supabaseAnonKey: process.env.NUXT_PUBLIC_SUPABASE_ANON_KEY || '',
+      apiBaseUrl: process.env.NUXT_PUBLIC_API_BASE_URL || 'https://narak-portfolio-backend.fastapicloud.dev',
+      supabaseUrl: process.env.NUXT_PUBLIC_SUPABASE_URL || 'https://zcsgqdbqabksyyzstdtq.supabase.co',
+      supabaseAnonKey: process.env.NUXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpjc2dxZGJxYWJrc3l5enN0ZHRxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUyNTUxNzIsImV4cCI6MjEwMDgzMTE3Mn0.xTOu1gf7s8_6Z5LKOz1U7XG9-KTGE7sR__uC1TZ-9jQ',
     },
   },
 
