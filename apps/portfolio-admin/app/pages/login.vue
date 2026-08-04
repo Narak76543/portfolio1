@@ -177,7 +177,9 @@ async function fetchNewQR() {
     startCountdown()
     startPolling()
   } catch (err: any) {
-    errorMessage.value = 'Failed to generate QR code. Please check your connection.'
+    console.error('QR Generation Error:', err)
+    const detail = err?.data?.detail || err?.statusMessage || err?.message || String(err)
+    errorMessage.value = `Failed to generate QR code: ${detail}`
   } finally {
     qrLoading.value = false
   }
