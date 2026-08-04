@@ -173,7 +173,11 @@ async function handleTrustThisDevice() {
     successMessage.value = `This device (${res.device_label}) is now trusted for QR login!`
     await fetchDevices()
   } catch (err: any) {
-    errorMessage.value = err.data?.detail || err.message || 'Failed to register device.'
+    if (err.status === 401 || err.statusCode === 401 || err.data?.error_code === 'TOKEN_MISSING' || err.data?.error_code === 'AUTH_FAILED') {
+      errorMessage.value = 'Session expired. Please sign out (top right icon) and sign in with password again to refresh your session.'
+    } else {
+      errorMessage.value = err.data?.detail || err.statusMessage || err.message || 'Failed to register device.'
+    }
   } finally {
     registering.value = false
   }

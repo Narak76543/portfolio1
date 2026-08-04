@@ -56,7 +56,7 @@ export function useAuth() {
   /** Get the Authorization header value. */
   function getAuthHeader(): Record<string, string> {
     initAuth()
-    const token = authState.value.accessToken || tokenCookie.value
+    const token = authState.value.accessToken || tokenCookie.value || (import.meta.client ? localStorage.getItem('admin_token') : null)
     if (!token) return {}
     return { Authorization: `Bearer ${token}` }
   }
