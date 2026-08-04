@@ -1,6 +1,9 @@
 export function useQRAuth() {
   const config = useRuntimeConfig()
-  const baseUrl = config.public.apiBaseUrl
+  const rawBaseUrl = config.public.apiBaseUrl || ''
+  const baseUrl = (import.meta.client && window.location.hostname !== 'localhost')
+    ? 'https://narak-portfolio-backend.fastapicloud.dev'
+    : (rawBaseUrl || 'http://localhost:8000')
   const { getAuthHeader } = useAuth()
 
   async function startQR() {
