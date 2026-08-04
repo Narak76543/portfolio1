@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build & Nuxt Output
+.output/
+.nuxt/
+dist/
+.nitro/
+
+# Python & Virtual Environments
+venv/
+.venv/
+__pycache__/
+*.pyc
+.fastapicloud/
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*.local
+
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log

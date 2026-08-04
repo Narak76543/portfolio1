@@ -1,0 +1,8 @@
+{
+  "name": "sarat-narak",
+  "private": true,
+  "workspaces": [
+    "apps/portfolio",
+    "apps/portfolio-admin"
+  ]
+}
