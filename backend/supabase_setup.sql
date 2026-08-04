@@ -111,3 +111,23 @@ CREATE TABLE IF NOT EXISTS qr_login_requests (
 );
 
 CREATE INDEX IF NOT EXISTS idx_qr_login_requests_status ON qr_login_requests (status);
+
+-- 9. Row Level Security (RLS) Configuration
+-- Enable RLS on all public tables to prevent direct unauthorized access via PostgREST.
+-- The FastAPI backend connects using the SUPABASE_SERVICE_ROLE_KEY, which safely bypasses RLS.
+ALTER TABLE public.projects ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.profile ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.stats ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.social_media ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.tech_stack ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.skill_categories ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.trusted_devices ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.qr_login_requests ENABLE ROW LEVEL SECURITY;
+
+-- Optional: Allow public read-only access directly via PostgREST for public portfolio tables (read-only)
+CREATE POLICY "Public Read Projects" ON public.projects FOR SELECT USING (true);
+CREATE POLICY "Public Read Profile" ON public.profile FOR SELECT USING (true);
+CREATE POLICY "Public Read Stats" ON public.stats FOR SELECT USING (true);
+CREATE POLICY "Public Read Social Media" ON public.social_media FOR SELECT USING (true);
+CREATE POLICY "Public Read Tech Stack" ON public.tech_stack FOR SELECT USING (true);
+CREATE POLICY "Public Read Skill Categories" ON public.skill_categories FOR SELECT USING (true);
